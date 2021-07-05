@@ -1,5 +1,5 @@
 import React from 'react';
-import Posts from './components/posts.component.jsx';
+import Posts from './components/posts/posts.component.jsx';
 import './index.css';
 
 const App = () => (

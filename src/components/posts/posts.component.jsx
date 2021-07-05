@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Post from './post.component';
+import Post from '../post/post.component';
 
 const Posts = () => {
   const [postStart, setPostStart] = useState(0);
@@ -22,7 +22,7 @@ const Posts = () => {
     setPostStart(postStart + 10);
     fetchPostsData();
     setLoading(false);
-  }, [loading, postStart, posts.length]);
+  }, [loading, postStart]);
 
   useEffect(() => {
     const handleScroll = () => {

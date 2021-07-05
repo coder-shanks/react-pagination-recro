@@ -1,4 +1,5 @@
 import React from 'react';
+import './post.styles.css';
 
 const Post = (props) => {
   const { id, title, body } = props.postData;
