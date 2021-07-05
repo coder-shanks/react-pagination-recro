@@ -4,8 +4,9 @@ import Post from '../post/post.component';
 const Posts = () => {
   const [postStart, setPostStart] = useState(0);
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [fetchStart, setFetchStart] = useState(true);
 
+  // Fetches the posts from API based on start position with a limit of 10
   useEffect(() => {
     const fetchPostsData = async () => {
       await fetch(
@@ -18,12 +19,13 @@ const Posts = () => {
         .catch((error) => console.log(error));
     };
 
-    if (!loading) return;
+    if (!fetchStart) return;
     setPostStart(postStart + 10);
     fetchPostsData();
-    setLoading(false);
-  }, [loading, postStart]);
+    setFetchStart(false);
+  }, [fetchStart, postStart]);
 
+  // Set loading to true and check if we reached the end of posts' list on "scroll" event trigger
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -31,7 +33,7 @@ const Posts = () => {
           document.documentElement.offsetHeight &&
         posts.length !== 100
       )
-        setLoading(true);
+        setFetchStart(true);
     };
 
     window.addEventListener('scroll', handleScroll);
